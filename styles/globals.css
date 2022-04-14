@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: montserrat;
+    transition: all 0.5s ease-in-out;
+}
+
+/* //carousel arrow */
+.slick-arrow{
+    position: absolute;
+    background-color: white;
+    color: black;
+    fill: black;
+    z-index: 999;
+}
+.slick-next{
+    right: 0% !important;
+}
+.slick-prev {
+    left: 0% !important;
+}
+.slick-prev:before {
+    content: '';
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slic-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-next:before {
+    content: '';
+}
+
+.center{
+    @apply flex justify-center items-center;
+}
+button{
+    @apply rounded-full bg-white px-6 py-1 text-black hover:bg-brand_red hover:text-white uppercase font-medium text-sm;
+}
+.hover-scale:hover img{
+    transform: scale(1.05);
+}
+.clip{
+    clip-path: polygon(13% 0, 100% 0, 87% 100%, 0 100%);
+    padding: 0 30px;
+}
