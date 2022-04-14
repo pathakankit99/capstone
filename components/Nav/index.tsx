@@ -38,7 +38,7 @@ const Index = () => {
     user: state.auth_reducer.user,
     loading: state.auth_reducer.loading,
   }))
-  console.log(user,'USER')
+  // console.log(user,'USER')
    const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [option, setOption] = useState('login')
@@ -90,6 +90,7 @@ const Index = () => {
             payload: false,
           })
           handleSnackbarOpen()
+          handleClose()
         })
         .catch((err: any) => {
           handleSnackbarOpen()
@@ -208,9 +209,17 @@ const Index = () => {
             </ul>
           </div>
           <div className="flex text-2xl">
-            <div className="mr-2 cursor-pointer p-2" onClick={handleOpen}>
-              <FaUserAlt />
-            </div>
+            {user ? (
+              <Link href="/account">
+                <div className="mr-2 cursor-pointer p-2">
+                  <FaUserAlt />
+                </div>
+              </Link>
+            ) : (
+              <div className="mr-2 cursor-pointer p-2" onClick={handleOpen}>
+                <FaUserAlt />
+              </div>
+            )}
             <div className="relative rounded-full bg-brand_red p-2">
               <BsBasketFill />
               <div className="absolute -top-1 -right-1 rounded-full bg-yellow-600 px-1 text-xs">
@@ -288,8 +297,8 @@ const Index = () => {
                   </h5>
                   <div className="w-full">
                     <div className="pb-4">
-                        <TextField
-                          type={'email'}
+                      <TextField
+                        type={'email'}
                         id="outlined-basic"
                         label="Email"
                         variant="outlined"
@@ -331,8 +340,8 @@ const Index = () => {
                       />
                     </div>
                     <div className="pb-4">
-                        <TextField
-                          type="number"
+                      <TextField
+                        type="number"
                         id="outlined-basic"
                         label="Phone"
                         variant="outlined"
@@ -360,10 +369,14 @@ const Index = () => {
             </div>
           </div>
         </Modal>
-        <Snackbar open={snackbar} autoHideDuration={6000} onClose={handleSnackbarClose}>
+        <Snackbar
+          open={snackbar}
+          autoHideDuration={6000}
+          onClose={handleSnackbarClose}
+        >
           <Alert
             onClose={handleSnackbarClose}
-            severity={success?"success":"error"}
+            severity={success ? 'success' : 'error'}
             sx={{ width: '100%' }}
           >
             {message}
