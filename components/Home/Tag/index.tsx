@@ -4,7 +4,7 @@ const index = () => {
         <div className="center h-screen flex-wrap lg:h-64">
           <div className="hover-scale relative h-1/3 lg:h-full w-full overflow-hidden bg-blue-500 lg:w-6/12">
             <img
-              className="relative h-full"
+              className="relative h-full w-full"
               style={{ objectFit: 'cover' }}
               src="/images/tag-1.jpg"
             />
@@ -21,7 +21,7 @@ const index = () => {
           </div>
           <div className="hover-scale relative h-1/3 lg:h-full w-full overflow-hidden bg-brand_red lg:w-4/12">
             <img
-              className="relative h-full"
+              className="relative h-full w-full"
               style={{ objectFit: 'cover' }}
               src="/images/tag-2.jpg"
             />
@@ -38,7 +38,7 @@ const index = () => {
           </div>
           <div className="hover-scale relative h-1/3 lg:h-full w-full overflow-hidden bg-white text-brand_gray lg:w-2/12">
             <img
-              className="relative h-full"
+              className="relative h-full w-full"
               style={{ objectFit: 'cover' }}
               src="/images/chef-hat.jpg"
             />
