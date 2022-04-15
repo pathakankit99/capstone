@@ -1,8 +1,8 @@
 const index = () => {
   return (
-    <div className="relative h-90vh">
-      <img className="absolute top-0 bottom-0 -z-10" src="/images/offer.png" />
-      <div className=" p-6 px-16">
+    <div className="relative">
+      <img className="absolute top-0 bottom-0 -z-10" style={{height:"100%", objectFit:"cover", width:"100%"}} src="/images/offer.png" />
+      <div className=" p-6 lg:px-16">
         <div className="center pt-16">
           <span className="clip bg-brand_red px-6 py-2">
             Tasty Homemade Food
@@ -15,10 +15,10 @@ const index = () => {
           Inspired by recipes and creations of world’s best chefs
         </p>
 
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center flex-wrap">
           <div className="w-full lg:w-6/12">
             <div className="center card pt-6">
-              <div className="w-full lg:w-8/12">
+              <div className="w-8/12">
                 <div className="">
                   <span className="rounded-xl bg-green-600 px-8 py-1 text-xs font-bold">
                     Hot
@@ -31,12 +31,12 @@ const index = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-full lg:w-4/12 text-right pr-6">
+              <div className="w-4/12 text-right pr-6">
                 <p className="font-bold text-brand_red">Rs 100</p>
               </div>
             </div>
             <div className="center card pt-6">
-              <div className="w-full lg:w-8/12">
+              <div className="w-8/12">
                 <div className="">
                   <span className="rounded-xl bg-green-600 px-8 py-1 text-xs font-bold">
                     Hot
@@ -49,12 +49,12 @@ const index = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-full lg:w-4/12 text-right pr-6">
+              <div className="w-4/12 text-right pr-6">
                 <p className="font-bold text-brand_red">Rs 100</p>
               </div>
             </div>
             <div className="center card pt-6">
-              <div className="w-full lg:w-8/12">
+              <div className="w-8/12">
                 <div className="">
                   <span className="rounded-xl bg-green-600 px-8 py-1 text-xs font-bold">
                     Hot
@@ -67,12 +67,12 @@ const index = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-full lg:w-4/12 text-right pr-6">
+              <div className="w-4/12 text-right pr-6">
                 <p className="font-bold text-brand_red">Rs 100</p>
               </div>
             </div>
             <div className="center card pt-6">
-              <div className="w-full lg:w-8/12">
+              <div className="w-8/12">
                 <div className="">
                   <span className="rounded-xl bg-green-600 px-8 py-1 text-xs font-bold">
                     Hot
@@ -85,14 +85,14 @@ const index = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-full lg:w-4/12 text-right pr-6">
+              <div className="w-4/12 text-right pr-6">
                 <p className="font-bold text-brand_red">Rs 100</p>
               </div>
             </div>
           </div>
           <div className="w-full lg:w-6/12">
             <div className="center card pt-6">
-              <div className="w-full lg:w-8/12">
+              <div className="w-8/12">
                 <div className="">
                   <span className="rounded-xl bg-green-600 px-8 py-1 text-xs font-bold">
                     Hot
@@ -105,12 +105,12 @@ const index = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-full lg:w-4/12 text-right pr-6">
+              <div className="w-4/12 text-right pr-6">
                 <p className="font-bold text-brand_red">Rs 100</p>
               </div>
             </div>
             <div className="center card pt-6">
-              <div className="w-full lg:w-8/12">
+              <div className="w-8/12">
                 <div className="">
                   <span className="rounded-xl bg-green-600 px-8 py-1 text-xs font-bold">
                     Hot
@@ -123,12 +123,12 @@ const index = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-full lg:w-4/12 text-right pr-6">
+              <div className="w-4/12 text-right pr-6">
                 <p className="font-bold text-brand_red">Rs 100</p>
               </div>
             </div>
             <div className="center card pt-6">
-              <div className="w-full lg:w-8/12">
+              <div className="w-8/12">
                 <div className="">
                   <span className="rounded-xl bg-green-600 px-8 py-1 text-xs font-bold">
                     Hot
@@ -141,12 +141,12 @@ const index = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-full lg:w-4/12 text-right pr-6">
+              <div className="w-4/12 text-right pr-6">
                 <p className="font-bold text-brand_red">Rs 100</p>
               </div>
             </div>
             <div className="center card pt-6">
-              <div className="w-full lg:w-8/12">
+              <div className="w-8/12">
                 <div className="">
                   <span className="rounded-xl bg-green-600 px-8 py-1 text-xs font-bold">
                     Hot
@@ -159,7 +159,7 @@ const index = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-full lg:w-4/12 text-right pr-6">
+              <div className="w-4/12 text-right pr-6">
                 <p className="font-bold text-brand_red">Rs 100</p>
               </div>
             </div>

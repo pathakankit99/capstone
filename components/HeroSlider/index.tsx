@@ -63,13 +63,16 @@ const Index = () => {
   }
   return (
     <div className="">
-      <Slider {...settings} className="overflow-hidden">
-        <div>
+      <Slider {...settings} className="h-screen overflow-hidden">
+        <div className="h-full w-full">
           <div className="relative">
-            <img src="/images/banner-1.jpg" />
+            <img
+              style={{ height: '100vh', objectFit: 'cover', width: '100%' }}
+              src="/images/banner-1.jpg"
+            />
             <div className="center absolute top-0 bottom-0 left-0 right-0 z-50 h-screen">
               <img
-                className="absolute top-20 left-40 "
+                className="absolute top-20 left-0 md:left-40 "
                 width={150}
                 src="/images/chef-hat.png"
               />
@@ -89,12 +92,18 @@ const Index = () => {
         </div>
         <div>
           <div className="relative">
-            <img src="/images/banner-2.jpg" />
+            <img
+              style={{ height: '100vh', objectFit: 'cover', width: '100%' }}
+              src="/images/banner-2.jpg"
+            />
           </div>
         </div>
         <div>
           <div className="relative">
-            <img src="/images/banner-3.jpg" />
+            <img
+              style={{ height: '100vh', objectFit: 'cover', width: '100%' }}
+              src="/images/banner-3.jpg"
+            />
           </div>
         </div>
       </Slider>

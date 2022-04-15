@@ -198,7 +198,7 @@ const Index = () => {
       <div>
         <nav className="absolute z-50 flex w-full items-center justify-between p-6 lg:px-16">
           <div className="text-4xl font-black text-brand_red">EATOS</div>
-          <div className="flex flex-1 justify-center">
+          <div className="flex-1 justify-center hidden lg:flex">
             <ul className="flex items-center justify-center text-sm">
               <li className="cursor-pointer pr-6 font-bold uppercase active:underline">
                 Home

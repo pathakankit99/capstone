@@ -37,7 +37,7 @@ const Index = () => {
     ],
   }
   return (
-    <div className="bg-brand_gray p-6 lg:px-16 h-screen flex items-end">
+    <div className="bg-brand_gray p-6 lg:px-16 lg:h-screen flex items-end">
       <Slider {...settings} className="overflow-hidden">
         <div className="h-full border-l focus:outline-none border-gray-500 p-3 text-center">
           <p className="font-bold uppercase">Chhole Bhature</p>
