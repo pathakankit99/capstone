@@ -49,7 +49,7 @@ handler.post(async (req, res) => {
                   access: ['read', 'write'],
                   data: user,
                 },
-                'inscape',
+                'eatos',
                 {
                   expiresIn: 86400,
                 }

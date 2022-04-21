@@ -1,3 +1,4 @@
+//@ts-nocheck
 const _ = require('lodash')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
@@ -12,7 +13,7 @@ async function validate(req, res, next) {
       if (/^Bearer$/i.test(scheme)) {
         token = credentials
         try {
-          var decoded = jwt.verify(token, 'inscape')
+          var decoded = jwt.verify(token, 'eatos')
           // console.log(decoded, "decoded token");
           if (decoded.type === 'user') {
             var user = await User.findOne({ _id: decoded.data._id })
@@ -60,7 +61,7 @@ async function validate(req, res, next) {
   }
 }
 
-const getUserIftoken = async (req, res) => {
+const getUserIftoken = async (req, res, next) => {
   let token = ''
   if (req.headers && req.headers.authorization) {
     const parts = req.headers.authorization.split(' ')
@@ -70,11 +71,12 @@ const getUserIftoken = async (req, res) => {
       if (/^Bearer$/i.test(scheme)) {
         token = credentials
         try {
-          var decoded = jwt.verify(token, 'inscape')
+          var decoded = jwt.verify(token, 'eatos')
+          console.log(decoded, 'decoded')
           if (decoded.type === 'user') {
             var user = await User.findOne({ _id: decoded.data._id })
             decoded.data = user
-            // console.log(user)
+            console.log(user, 'user')
             if (!user) {
               res.status(401)
               res.send({ message: 'User not found!' })
