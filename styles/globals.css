@@ -54,7 +54,10 @@
     @apply flex justify-center items-center;
 }
 button{
-    @apply rounded-full bg-white px-6 py-1 text-black hover:bg-brand_red hover:text-white uppercase font-medium text-sm;
+    @apply rounded-full bg-white px-6 py-1 text-black hover:bg-brand_red hover:text-white uppercase font-medium text-sm flex items-center justify-center;
+}
+button :nth-child(1){
+    margin-right: 5px;
 }
 .hover-scale:hover img{
     transform: scale(1.05);
