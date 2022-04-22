@@ -26,7 +26,7 @@ function index() {
                   style={{ height: '60%' }}
                 >
                   <img
-                    style={{ objectFit: 'cover', height: '100%' }}
+                    style={{ objectFit: 'cover', height: '100%' , width:"100%"}}
                     src={item.img}
                   />
                   {item.type === 'veg' && (

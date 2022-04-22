@@ -1,10 +1,22 @@
 import Slider from 'react-slick'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+
+import { MdGpsFixed } from 'react-icons/md'
 const Index = () => {
+  const [dishes, setdishes] = useState([])
+  useEffect(() => {
+    axios
+      .get('/api/dish')
+
+      .then((res) => setdishes(res?.data?.dishes))
+      .catch((err) => console.log(err, 'dishes get error'))
+  }, [])
     var settings = {
-        autoPlay:true,
+        autoPlay:false,
       arrows: false,
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
@@ -37,44 +49,167 @@ const Index = () => {
     ],
   }
   return (
-    <div className="bg-brand_gray p-6 lg:px-16 lg:h-screen flex items-end">
-      <Slider {...settings} className="overflow-hidden">
-        <div className="h-full border-l focus:outline-none border-gray-500 p-3 text-center">
-          <p className="font-bold uppercase">Chhole Bhature</p>
-          <img className="py-3" src="images/bhatura.png" />
-          <p className="text-gray-500">
-            A North Indian dish with chickpeas and puri
-          </p>
-        </div>
-        <div className="h-full border-l focus:outline-none border-gray-500 p-3 text-center">
-          <p className="font-bold uppercase">Dosa</p>
-          <img className="py-3" src="images/dosa.png" />
-          <p className="text-gray-500">
-            A South Indian dish with chickpeas and puri
-          </p>
-        </div>
-        <div className="h-full border-l focus:outline-none border-gray-500 p-3 text-center">
-          <p className="font-bold uppercase">Aloo Paratha</p>
-          <img className="py-3" src="images/parantha.png" />
-          <p className="text-gray-500">
-            A South Indian dish with chickpeas and puri
-          </p>
-        </div>
-        <div className="h-full border-l focus:outline-none border-gray-500 p-3 text-center">
-          <p className="font-bold uppercase">Dosa</p>
-          <img className="py-3" src="images/dosa.png" />
-          <p className="text-gray-500">
-            A South Indian dish with chickpeas and puri
-          </p>
-        </div>
-        <div className="h-full border-l focus:outline-none border-gray-500 p-3 text-center">
-          <p className="font-bold uppercase">Dosa</p>
-          <img className="py-3" src="images/dosa.png" />
-          <p className="text-gray-500">
-            A South Indian dish with chickpeas and puri
-          </p>
-        </div>
-      </Slider>
+    <div className="flex items-end bg-brand_gray p-6 lg:h-screen lg:px-16">
+      {dishes?.length > 0 && dishes?.length < 5 && (
+        <Slider {...settings} className="overflow-hidden">
+          {dishes?.map((item: any) => (
+            <div key={item._id} className="lg:3/12 w-full p-3 md:w-4/12">
+              <div className="scale h-96  overflow-hidden bg-gray-100 text-brand_gray hover:shadow-xl">
+                <div
+                  className="h-full overflow-hidden"
+                  style={{ height: '60%' }}
+                >
+                  <img
+                    style={{
+                      objectFit: 'cover',
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    src={item.img}
+                  />
+                </div>
+                <div className="p-3">
+                  <h4 className="pt-3 text-center text-sm font-bold capitalize text-brand_gray">
+                    {item.name}
+                  </h4>
+                  <div
+                    className={
+                      item.type === 'veg'
+                        ? 'center py-3 text-green-700'
+                        : 'center py-3 text-red-500'
+                    }
+                  >
+                    <MdGpsFixed />
+                    <span className="ml-2 text-xs">{item.type}</span>
+                  </div>
+                  {/* <p className="py-3 text-center text-xs">{item.description}</p> */}
+                  <p className="border border-brand_gray p-1 text-center text-sm font-medium">
+                    Rs {item.price}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+          {dishes?.map((item: any) => (
+            <div key={item._id} className="lg:3/12 w-full p-3 md:w-4/12">
+              <div className="scale h-96  overflow-hidden bg-gray-100 text-brand_gray hover:shadow-xl">
+                <div
+                  className="h-full overflow-hidden"
+                  style={{ height: '60%' }}
+                >
+                  <img
+                    style={{
+                      objectFit: 'cover',
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    src={item.img}
+                  />
+                </div>
+                <div className="p-3">
+                  <h4 className="pt-3 text-center text-sm font-bold capitalize text-brand_gray">
+                    {item.name}
+                  </h4>
+                  <div
+                    className={
+                      item.type === 'veg'
+                        ? 'center py-3 text-green-700'
+                        : 'center py-3 text-red-500'
+                    }
+                  >
+                    <MdGpsFixed />
+                    <span className="ml-2 text-xs">{item.type}</span>
+                  </div>
+                  {/* <p className="py-3 text-center text-xs">{item.description}</p> */}
+                  <p className="border border-brand_gray p-1 text-center text-sm font-medium">
+                    Rs {item.price}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+          {dishes?.map((item: any) => (
+            <div key={item._id} className="lg:3/12 w-full p-3 md:w-4/12">
+              <div className="scale h-96  overflow-hidden bg-gray-100 text-brand_gray hover:shadow-xl">
+                <div
+                  className="h-full overflow-hidden"
+                  style={{ height: '60%' }}
+                >
+                  <img
+                    style={{
+                      objectFit: 'cover',
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    src={item.img}
+                  />
+                </div>
+                <div className="p-3">
+                  <h4 className="pt-3 text-center text-sm font-bold capitalize text-brand_gray">
+                    {item.name}
+                  </h4>
+                  <div
+                    className={
+                      item.type === 'veg'
+                        ? 'center py-3 text-green-700'
+                        : 'center py-3 text-red-500'
+                    }
+                  >
+                    <MdGpsFixed />
+                    <span className="ml-2 text-xs">{item.type}</span>
+                  </div>
+                  {/* <p className="py-3 text-center text-xs">{item.description}</p> */}
+                  <p className="border border-brand_gray p-1 text-center text-sm font-medium">
+                    Rs {item.price}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Slider>
+      )}
+      {dishes?.length > 0 && dishes.length >4 && (
+        <Slider {...settings} className="overflow-hidden">
+          {dishes?.map((item: any) => (
+            <div key={item._id} className="lg:3/12 w-full p-3 md:w-4/12">
+              <div className="scale h-96  overflow-hidden bg-gray-100 text-brand_gray hover:shadow-xl">
+                <div
+                  className="h-full overflow-hidden"
+                  style={{ height: '60%' }}
+                >
+                  <img
+                    style={{
+                      objectFit: 'cover',
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    src={item.img}
+                  />
+                </div>
+                <div className="p-3">
+                  <h4 className="pt-3 text-center text-sm font-bold capitalize text-brand_gray">
+                    {item.name}
+                  </h4>
+                  <div
+                    className={
+                      item.type === 'veg'
+                        ? 'center py-3 text-green-700'
+                        : 'center py-3 text-red-500'
+                    }
+                  >
+                    <MdGpsFixed />
+                    <span className="ml-2 text-xs">{item.type}</span>
+                  </div>
+                  {/* <p className="py-3 text-center text-xs">{item.description}</p> */}
+                  <p className="border border-brand_gray p-1 text-center text-sm font-medium">
+                    Rs {item.price}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Slider>
+      )}
     </div>
   )
 }
