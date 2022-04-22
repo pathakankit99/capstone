@@ -52,6 +52,7 @@ const Index = () => {
   const [description, setDescription] = useState('')
   const [selectedFile, setSelectedFile] = useState(null)
   const [restaurant, setRestaurant] = useState('')
+  const [category, setCategory] = useState('')
 
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(false)
@@ -108,6 +109,7 @@ const Index = () => {
             img: image_url,
             restaurant,
             price,
+            category
           }
           axios
             .post('/api/dish/create', body, config)
@@ -123,6 +125,7 @@ const Index = () => {
               handleSnackbarOpen()
               setName('')
               setDescription('')
+              setCategory('')
               setType('')
               setPrice(0)
               setRestaurant("")
@@ -133,8 +136,8 @@ const Index = () => {
                 payload: false,
               })
               setSuccess(false)
-              console.log(err.data, 'dish creation error')
-              if (err.data.message) {
+              console.log(err?.data, 'dish creation error')
+              if (err?.data?.message) {
                 setMessage(err.data.message)
               } else {
                 setMessage('Dish Creation Failed')
@@ -155,9 +158,9 @@ const Index = () => {
       handleSnackbarOpen()
     }
   }
-  useEffect(() => {
-    console.log(restaurant, 'restaurant')
-  }, [selectedFile, restaurant])
+  // useEffect(() => {
+  //   console.log(restaurant, 'restaurant')
+  // }, [selectedFile, restaurant])
 
   return (
     <div className="flex items-start justify-center p-6">
@@ -187,6 +190,25 @@ const Index = () => {
               >
                 <MenuItem value="veg">Veg</MenuItem>
                 <MenuItem value="non-veg">Non-Veg</MenuItem>
+              </TextField>
+            </div>
+            <div className="pb-4">
+              <TextField
+                select
+                id="outlined-basic"
+                label="Category"
+                variant="outlined"
+                fullWidth={true}
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <MenuItem value="drinks">Drinks</MenuItem>
+                <MenuItem value="main-course">Main-Course</MenuItem>
+                <MenuItem value="sweets">Sweets</MenuItem>
+                <MenuItem value="combos">Combos</MenuItem>
+                <MenuItem value="snacks">Snacks</MenuItem>
+                <MenuItem value="cakes">Cakes</MenuItem>
+                <MenuItem value="thali">Thali</MenuItem>
               </TextField>
             </div>
 
@@ -281,8 +303,10 @@ const Index = () => {
             </div>
           </div>
         ) : (
-            <div className='center h-50vh'>
-              <p className='text-brand_gray text-center'>Create a Restaurant to continue.</p>
+          <div className="center h-50vh">
+            <p className="text-center text-brand_gray">
+              Create a Restaurant to continue.
+            </p>
           </div>
         )}
       </div>

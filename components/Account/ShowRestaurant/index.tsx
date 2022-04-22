@@ -13,21 +13,27 @@ function index() {
   
   return (
     <div className="">
-      {restaurants?.length > 0 && <p className='text-sm font-bold text-brand_gray p-3'>My Restaurants</p>}
+      {restaurants?.length > 0 && (
+        <p className="p-3 text-sm font-bold text-brand_gray">My Restaurants</p>
+      )}
       <div className="flex flex-wrap">
         {restaurants?.length > 0 &&
-          restaurants?.map((item:any) => (
+          restaurants?.map((item: any) => (
             <div key={item._id} className="lg:3/12 w-full p-3 md:w-4/12">
               <div className="scale h-96  overflow-hidden bg-gray-100 text-brand_gray hover:shadow-xl">
                 <div
-                  className="h-full overflow-hidden relative"
+                  className="relative h-full overflow-hidden"
                   style={{ height: '60%' }}
                 >
                   <img
                     style={{ objectFit: 'cover', height: '100%' }}
                     src={item.img}
                   />
-                  <div className='bg-green-600 text-white text-sm font-medium absolute top-0 p-3'>100% Veg</div>
+                  {item.type === 'veg' && (
+                    <div className="absolute top-0 bg-green-600 p-3 text-sm font-medium text-white">
+                      100% Veg
+                    </div>
+                  )}
                 </div>
                 <div className="p-3">
                   <h4 className="pt-3 text-center text-sm font-bold capitalize text-brand_gray">

@@ -37,14 +37,14 @@ function index() {
                   <div
                     className={
                       item.type === 'veg'
-                        ? 'center pt-3 text-green-700'
-                        : 'center pt-3 text-red-500'
+                        ? 'center py-3 text-green-700'
+                        : 'center py-3 text-red-500'
                     }
                   >
                     <MdGpsFixed />
                     <span className="ml-2 text-xs">{item.type}</span>
                   </div>
-                  <p className="py-3 text-center text-xs">{item.description}</p>
+                  {/* <p className="py-3 text-center text-xs">{item.description}</p> */}
                   <p className="text-center text-sm font-medium border border-brand_gray p-1">Rs {item.price}</p>
                 </div>
               </div>
