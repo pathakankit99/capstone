@@ -8,6 +8,7 @@ import {RiDashboardLine} from 'react-icons/ri'
 import {FaHotel} from 'react-icons/fa'
 import AddRestaurant from "../AddRestaurant"
 import AddDish from '../AddDish'
+import Dashboard from "../Dashboard"
 const Section1 = () => {
   const [key, setKey] = useState(0)
   const dispatch = useDispatch()
@@ -28,7 +29,7 @@ const Section1 = () => {
     router.push('/')
   }
   return (
-    <div className="flex justify-center p-6 pt-16 lg:px-16">
+    <div className="flex flex-wrap justify-center p-6 pt-16  lg:px-16">
       <div className="h-full w-full bg-brand_red p-6 md:w-3/12">
         <div className="center">
           <Avatar
@@ -72,6 +73,7 @@ const Section1 = () => {
         </div>
       </div>
       <div className="w-full md:w-9/12">
+        {key === 0 && <Dashboard />}
         {key === 1 && <AddRestaurant />}
         {key === 2 && <AddDish />}
       </div>

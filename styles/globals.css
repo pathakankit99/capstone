@@ -66,3 +66,8 @@ button :nth-child(1){
     clip-path: polygon(13% 0, 100% 0, 87% 100%, 0 100%);
     padding: 0 30px;
 }
+
+.scale:hover img{
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}

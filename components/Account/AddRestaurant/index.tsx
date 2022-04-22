@@ -64,7 +64,7 @@ const Index = () => {
         headers: { 'content-type': 'multipart/form-data' },
       }
       formData.append('api_key', '491118498872778')
-      formData.append('folder', 'eatos/restaurant')
+    formData.append('folder', 'eatos/' + process.env.NEXT_PUBLIC_ENV + '/restaurant')
       formData.append('file', selectedFile)
       formData.append('upload_preset', 'unsigned')
       dispatch({
@@ -180,7 +180,7 @@ const Index = () => {
               onChange={(e) => setType(e.target.value)}
             >
               <MenuItem value="veg">Veg</MenuItem>
-              <MenuItem value="Mixed">Mixed</MenuItem>
+              <MenuItem value="mixed">Mixed</MenuItem>
             </TextField>
           </div>
           <div className="pb-4">
@@ -198,6 +198,7 @@ const Index = () => {
           </div>
           <div className="pb-4">
             <TextField
+              select
               type={'text'}
               id="outlined-basic"
               label="City"
@@ -205,7 +206,16 @@ const Index = () => {
               fullWidth={true}
               value={city}
               onChange={(e) => setCity(e.target.value)}
-            />
+            >
+              <MenuItem value="delhi">Delhi</MenuItem>
+              <MenuItem value="mumbai">Mumbai</MenuItem>
+              <MenuItem value="bangalore">Bangalore</MenuItem>
+              <MenuItem value="hyderabad">Hyderabad</MenuItem>
+              <MenuItem value="chennai">Chennai</MenuItem>
+              <MenuItem value="kolkata">Kolkata</MenuItem>
+              <MenuItem value="jaipur">Jaipur</MenuItem>
+              <MenuItem value="lucknow">Lucknow</MenuItem>
+            </TextField>{' '}
           </div>
           <div className="center flex-wrap pb-4">
             <div className="w-full md:w-8/12">

@@ -64,7 +64,7 @@ const Index = () => {
       .then((res) => setRestaurants(res?.data?.restaurants))
   }, [])
 
-  console.log(restaurants, 'restaurants')
+  // console.log(restaurants, 'restaurants')
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -74,7 +74,7 @@ const Index = () => {
       headers: { 'content-type': 'multipart/form-data' },
     }
     formData.append('api_key', '491118498872778')
-    formData.append('folder', 'eatos/dish')
+    formData.append('folder', 'eatos/'+process.env.NEXT_PUBLIC_ENV+'/dish')
     formData.append('file', selectedFile)
     formData.append('upload_preset', 'unsigned')
     if (name && type && description) {
@@ -162,119 +162,129 @@ const Index = () => {
   return (
     <div className="flex items-start justify-center p-6">
       <div className="w-full">
-        <div className="w-full">
-          <div className="pb-4">
-            <TextField
-              type={'text'}
-              id="outlined-basic"
-              label="Dish Name"
-              variant="outlined"
-              fullWidth={true}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="pb-4">
-            <TextField
-              select
-              id="outlined-basic"
-              label="Type"
-              variant="outlined"
-              fullWidth={true}
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-            >
-              <MenuItem value="veg">Veg</MenuItem>
-              <MenuItem value="non-veg">Non-Veg</MenuItem>
-            </TextField>
-          </div>
-
-          <div className="pb-4">
-            <TextField
-              select
-              id="outlined-basic"
-              label="Restaurant"
-              variant="outlined"
-              fullWidth={true}
-              value={restaurant}
-              onChange={(e) => setRestaurant(e.target.value)}
-            >
-              {restaurants?.length > 0 &&
-                restaurants.map((item) => <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>)}
-            </TextField>
-          </div>
-          <div className="pb-4">
-            <TextField
-              multiline
-              type="text"
-              id="outlined-basic"
-              label="Description"
-              variant="outlined"
-              fullWidth={true}
-              value={description}
-              rows={4}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-          <div className="pb-4">
-            <TextField
-              type={'number'}
-              id="outlined-basic"
-              label="Price"
-              variant="outlined"
-              fullWidth={true}
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </div>
-          <div className="center flex-wrap pb-4">
-            <div className="w-full md:w-8/12">
-              <input
-                ref={uploadInputRef}
-                accept="image/*"
-                onChange={() =>
-                  //@ts-ignore
-                  setSelectedFile(document?.getElementById('file').files[0])
-                }
-                id="file"
-                type="file"
-                hidden
+        {restaurants?.length > 0 ? (
+          <div className="w-full">
+            <div className="pb-4">
+              <TextField
+                type={'text'}
+                id="outlined-basic"
+                label="Dish Name"
+                variant="outlined"
+                fullWidth={true}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
-              <label htmlFor="file">
-                <button
-                  className="rounded-none border border-brand_gray bg-slate-400 hover:bg-slate-400 hover:text-black"
-                  onClick={() =>
-                    uploadInputRef.current && uploadInputRef.current.click()
-                  }
-                >
-                  {selectedFile?.name ? 'Change File' : 'Upload File'}
-                </button>
-                <p className="text-xs text-black">
-                  {selectedFile?.name
-                    ? '*' + selectedFile?.name + ' selected'
-                    : ''}
-                </p>
-              </label>
             </div>
-            <div className="w-full md:w-4/12">
-              <img src="/images/account/placeholder.jpg" />
-            </div>
-          </div>
-          <div className="center flex-col">
-            <div className="pb-1">
-              <button
-                onClick={(e) => handleSubmit(e)}
-                className="bg-brand_red px-16 py-2 text-white"
+            <div className="pb-4">
+              <TextField
+                select
+                id="outlined-basic"
+                label="Type"
+                variant="outlined"
+                fullWidth={true}
+                value={type}
+                onChange={(e) => setType(e.target.value)}
               >
-                {loading ? (
-                  <CircularProgress sx={{ color: 'white' }} size={20} />
-                ) : (
-                  'Submit'
-                )}
-              </button>
+                <MenuItem value="veg">Veg</MenuItem>
+                <MenuItem value="non-veg">Non-Veg</MenuItem>
+              </TextField>
+            </div>
+
+            <div className="pb-4">
+              <TextField
+                select
+                id="outlined-basic"
+                label="Restaurant"
+                variant="outlined"
+                fullWidth={true}
+                value={restaurant}
+                onChange={(e) => setRestaurant(e.target.value)}
+              >
+                {restaurants?.length > 0 &&
+                  restaurants.map((item) => (
+                    <MenuItem key={item._id} value={item._id}>
+                      {item.name}
+                    </MenuItem>
+                  ))}
+              </TextField>
+            </div>
+            <div className="pb-4">
+              <TextField
+                multiline
+                type="text"
+                id="outlined-basic"
+                label="Description"
+                variant="outlined"
+                fullWidth={true}
+                value={description}
+                rows={4}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <div className="pb-4">
+              <TextField
+                type={'number'}
+                id="outlined-basic"
+                label="Price"
+                variant="outlined"
+                fullWidth={true}
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+            <div className="center flex-wrap pb-4">
+              <div className="w-full md:w-8/12">
+                <input
+                  ref={uploadInputRef}
+                  accept="image/*"
+                  onChange={() =>
+                    //@ts-ignore
+                    setSelectedFile(document?.getElementById('file').files[0])
+                  }
+                  id="file"
+                  type="file"
+                  hidden
+                />
+                <label htmlFor="file">
+                  <button
+                    className="rounded-none border border-brand_gray bg-slate-400 hover:bg-slate-400 hover:text-black"
+                    onClick={() =>
+                      uploadInputRef.current && uploadInputRef.current.click()
+                    }
+                  >
+                    {selectedFile?.name ? 'Change File' : 'Upload File'}
+                  </button>
+                  <p className="text-xs text-black">
+                    {selectedFile?.name
+                      ? '*' + selectedFile?.name + ' selected'
+                      : ''}
+                  </p>
+                </label>
+              </div>
+              <div className="w-full md:w-4/12">
+                <img src="/images/account/placeholder.jpg" />
+              </div>
+            </div>
+            <div className="center flex-col">
+              <div className="pb-1">
+                <button
+                  onClick={(e) => handleSubmit(e)}
+                  className="bg-brand_red px-16 py-2 text-white"
+                >
+                  {loading ? (
+                    <CircularProgress sx={{ color: 'white' }} size={20} />
+                  ) : (
+                    'Submit'
+                  )}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+            <div className='center h-50vh'>
+              <p className='text-brand_gray text-center'>Create a Restaurant to continue.</p>
+          </div>
+        )}
       </div>
 
       <Snackbar

@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { logInUserService, signUpService } from '../../services/user'
 import React from 'react'
 import Link from 'next/link'
+import {useRouter} from "next/router"
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert, { AlertProps } from '@mui/material/Alert'
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -17,6 +18,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 })
 const Index = () => {
+  const router = useRouter();
   const [snackbar, setSnackbar] = React.useState(false)
 
   const handleSnackbarOpen = () => {
@@ -83,7 +85,7 @@ const Index = () => {
             payload: res.data,
           })
           setTimeout(() => {
-            // router.push('/account')
+            router.push('/account')
           }, 2000)
           dispatch({
             type: 'LOADING',
