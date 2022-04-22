@@ -13,9 +13,10 @@ handler.use(getUserIftoken)
 handler.get(async (req, res) => {
     await dbConnect()
     const { body, user } = req;
-    const filters = await convertParams(Restaurant, req.query)
+  const filters = await convertParams(Restaurant, req.query)
+  console.log(user, 'user in req')
     if (req.user) {
-        filters.where.user= user._id
+        filters.where.createdBy= user._id
     }
     console.log(filters,'filters')
   Restaurant.find(filters.find)

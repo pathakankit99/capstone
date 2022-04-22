@@ -4,28 +4,18 @@ import { MdGpsFixed } from 'react-icons/md'
 function index() {
   const [dishes, setdishes] = useState([])
   useEffect(() => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        'Content-Type': 'application/json',
-      },
-    }
     axios
-      .get('/api/dish',config)
-
+      .get('/api/dish')
       .then((res) => setdishes(res?.data?.dishes))
       .catch((err) => console.log(err, 'dishes get error'))
   }, [])
 
   return (
-    <div className="">
-      {dishes?.length > 0 && (
-        <p className="p-3 text-sm font-bold text-brand_gray">My dishes</p>
-      )}
+    <div className="p-6 lg:p-16">
       <div className="flex flex-wrap">
         {dishes?.length > 0 &&
           dishes?.map((item: any) => (
-            <div key={item._id} className="lg:3/12 w-full p-3 md:w-4/12">
+            <div key={item._id} className=" w-full p-3 md:w-3/12">
               <div className="scale h-96  overflow-hidden bg-gray-100 text-brand_gray hover:shadow-xl">
                 <div
                   className="h-full overflow-hidden"
@@ -52,6 +42,7 @@ function index() {
                   </div>
                   {/* <p className="py-3 text-center text-xs">{item.description}</p> */}
                   <p className="text-center text-sm font-medium border border-brand_gray p-1">Rs {item.price}</p>
+                  <button className='w-full bg-brand_red rounded-none text-white hover:bg-red-700 my-2'>Add To Cart</button>
                 </div>
               </div>
             </div>

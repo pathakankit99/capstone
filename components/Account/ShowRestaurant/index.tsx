@@ -3,9 +3,15 @@ import axios from 'axios'
 import {HiLocationMarker} from "react-icons/hi"
 function index() {
   const [restaurants, setRestaurants] = useState([])
-   useEffect(() => {
+  useEffect(() => {
+     const config = {
+       headers: {
+         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+         'Content-Type': 'application/json',
+       },
+     }
      axios
-       .get('/api/restaurant')
+       .get('/api/restaurant', config)
 
        .then((res) => setRestaurants(res?.data?.restaurants))
        .catch((err) => console.log(err, 'restaurant get error'))

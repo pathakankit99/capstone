@@ -52,18 +52,22 @@ const Section1 = () => {
           >
             <RiDashboardLine /> Dashboard
           </button>
-          <button
-            className="mb-2 w-full rounded-none py-3 text-brand_gray hover:bg-blue-200 hover:text-brand_gray"
-            onClick={() => setKey(1)}
-          >
-            <FaHotel /> Add Restaurant
-          </button>
-          <button
-            className="mb-2 w-full rounded-none py-3 text-brand_gray hover:bg-blue-200 hover:text-brand_gray"
-            onClick={() => setKey(2)}
-          >
-            <BiDish /> Add Dish
-          </button>
+          {user?.role?.name === 'partner' && (
+            <>
+              <button
+                className="mb-2 w-full rounded-none py-3 text-brand_gray hover:bg-blue-200 hover:text-brand_gray"
+                onClick={() => setKey(1)}
+              >
+                <FaHotel /> Add Restaurant
+              </button>
+              <button
+                className="mb-2 w-full rounded-none py-3 text-brand_gray hover:bg-blue-200 hover:text-brand_gray"
+                onClick={() => setKey(2)}
+              >
+                <BiDish /> Add Dish
+              </button>
+            </>
+          )}
           <button
             onClick={() => logout()}
             className="w-full rounded-none py-3 text-brand_red hover:bg-red-200 hover:text-brand_red"

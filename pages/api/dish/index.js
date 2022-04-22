@@ -15,7 +15,7 @@ handler.get(async (req, res) => {
   const { body, user } = req
   const filters = await convertParams(Dish, req.query)
   if (req.user) {
-    filters.where.user = user._id
+    filters.where.createdBy = user._id
   }
   console.log(filters, 'filters')
   Dish.find(filters.find)
