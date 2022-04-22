@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
   loading: false,
-  cart: null,
+  cart: [],
 }
 
 export default (state = INITIAL_STATE, action) => {

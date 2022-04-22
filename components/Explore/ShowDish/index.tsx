@@ -1,14 +1,53 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { MdGpsFixed } from 'react-icons/md'
+import {useSelector, useDispatch} from 'react-redux'
 function index() {
+  const dispatch = useDispatch();
   const [dishes, setdishes] = useState([])
+  const { user, loading, cart } = useSelector((state: any) => ({
+    user: state.auth_reducer.user,
+    loading: state.auth_reducer.loading,
+    cart: state.app_reducer.cart,
+  }))
+  // console.log(cart, 'cart')
   useEffect(() => {
     axios
       .get('/api/dish')
       .then((res) => setdishes(res?.data?.dishes))
       .catch((err) => console.log(err, 'dishes get error'))
   }, [])
+
+  const addToCart = (newCart:any) => {
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: newCart,
+    })
+    
+  }
+  const removeFromCart = (item: any) => {
+    const indexOf = cart?.findIndex((e: any) => (e._id == item._id))
+    // console.log(indexOf,'index')
+    cart.splice(indexOf, 1);
+    // console.log(cart, 'cart after removing index')
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: cart,
+    })
+  }
+
+  const isPresentInCart = (item: any) => {
+
+    const status = cart?.find((e: any) => {
+    if (e._id == item._id) {
+      return true;
+      }
+    else {
+      return false;
+      }
+    })
+    return status;
+  }
 
   return (
     <div className="p-6 lg:p-16">
@@ -22,7 +61,11 @@ function index() {
                   style={{ height: '60%' }}
                 >
                   <img
-                    style={{ objectFit: 'cover', height: '100%', width: "100%" }}
+                    style={{
+                      objectFit: 'cover',
+                      height: '100%',
+                      width: '100%',
+                    }}
                     src={item.img}
                   />
                 </div>
@@ -41,8 +84,25 @@ function index() {
                     <span className="ml-2 text-xs">{item.type}</span>
                   </div>
                   {/* <p className="py-3 text-center text-xs">{item.description}</p> */}
-                  <p className="text-center text-sm font-medium border border-brand_gray p-1">Rs {item.price}</p>
-                  <button className='w-full bg-brand_red rounded-none text-white hover:bg-red-700 my-2'>Add To Cart</button>
+                  <p className="border border-brand_gray p-1 text-center text-sm font-medium">
+                    Rs {item.price}
+                  </p>
+                  {
+                    isPresentInCart(item) ? (
+                    <button
+                      onClick={() => removeFromCart(item)}
+                      className="my-2 w-full rounded-none bg-brand_red text-white hover:bg-red-700"
+                    >
+                      Added To Cart
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => addToCart([...cart, item])}
+                      className="my-2 w-full rounded-none bg-brand_red text-white hover:bg-red-700"
+                    >
+                      Add To Cart
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

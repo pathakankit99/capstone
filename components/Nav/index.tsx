@@ -36,9 +36,10 @@ const Index = () => {
     setSnackbar(false)
   }
 
-  const { user, loading } = useSelector((state:any) => ({
+  const { user, loading, cart } = useSelector((state: any) => ({
     user: state.auth_reducer.user,
     loading: state.auth_reducer.loading,
+    cart: state.app_reducer.cart,
   }))
   // console.log(user,'USER')
    const dispatch = useDispatch()
@@ -228,7 +229,7 @@ const Index = () => {
             <div className="relative rounded-full bg-brand_red p-2">
               <BsBasketFill />
               <div className="absolute -top-1 -right-1 rounded-full bg-yellow-600 px-1 text-xs">
-                0
+                {cart?.length||0}
               </div>
             </div>
           </div>
