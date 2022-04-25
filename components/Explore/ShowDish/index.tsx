@@ -34,11 +34,12 @@ function index() {
   }))
   // console.log(cart, 'cart')
   useEffect(() => {
+    const query = `?category=${category}&type=${type}`
     axios
-      .get('/api/dish')
+      .get('/api/dish'+query)
       .then((res) => setdishes(res?.data?.dishes))
       .catch((err) => console.log(err, 'dishes get error'))
-  }, [])
+  }, [router])
 
   const querySearch = () => {
     const query = `?category=${category}&type=${type}`;
@@ -52,7 +53,9 @@ function index() {
   }
 
   useEffect(() => {
-    querySearch()
+    const query = `?category=${category}&type=${type}`
+    if(router) router?.push('/explore'+query)
+    // querySearch()
   }, [type, category])
 
   useEffect(() => {
