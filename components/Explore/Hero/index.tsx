@@ -1,6 +1,12 @@
+import { BsSearch } from 'react-icons/bs'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import ShowDish from '../ShowDish'
 const Hero = () => {
+ 
+
   return (
-    <div className="bg-brand_gray">
+    <div className="">
       <div className="relative h-50vh w-full">
         <img
           className=""
@@ -13,8 +19,9 @@ const Hero = () => {
           src="/images/partner/hero.jpg"
         />
         <div style={{ bottom: '-9%' }} className="center absolute z-50 w-full">
-          <span className="rounded-full bg-brand_red py-3 px-6 lg:px-16">
-            <h5 className="text-xl font-bold">Explore our offerings</h5>
+          <span className="flex items-center rounded-full bg-brand_red py-3 px-6 lg:px-16">
+           
+            <h5>Explore our offerings</h5>
           </span>
         </div>
       </div>
