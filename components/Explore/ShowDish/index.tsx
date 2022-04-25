@@ -4,8 +4,27 @@ import { MdGpsFixed } from 'react-icons/md'
 
 import { HiLocationMarker } from 'react-icons/hi'
 import { IoMdRestaurant } from 'react-icons/io'
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
+
+import {useRouter} from 'next/router'
 function index() {
+  const router = useRouter();
+  const [category, setCategory] = useState(router?.query?.category||'')
+  const [type, setType] = useState(router?.query?.type||'')
+
+  const handleCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCategory((event.target as HTMLInputElement).value)
+  }
+  const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setType((event.target as HTMLInputElement).value)
+  }
   const dispatch = useDispatch();
   const [dishes, setdishes] = useState([])
   const { user, loading, cart } = useSelector((state: any) => ({
@@ -20,6 +39,28 @@ function index() {
       .then((res) => setdishes(res?.data?.dishes))
       .catch((err) => console.log(err, 'dishes get error'))
   }, [])
+
+  const querySearch = () => {
+    const query = `?category=${category}&type=${type}`;
+    axios
+      .get('/api/dish'+query)
+      .then((res) => {
+        // console.log(res.data, 'query result');
+        setdishes(res?.data?.dishes)
+      })
+      .catch((err) => console.log(err, 'dishes get error'))
+  }
+
+  useEffect(() => {
+    querySearch()
+  }, [type, category])
+
+  useEffect(() => {
+    if (router?.query?.category) setCategory(router?.query?.category)
+    if (router?.query?.type) setType(router?.query?.type)
+  }, [router])
+  
+  
 
   const addToCart = (newCart:any) => {
     dispatch({
@@ -52,9 +93,86 @@ function index() {
     return status;
   }
 
+  console.log(category,'cate',type,'type')
+
   return (
-    <div className="p-6 lg:p-16">
-      <div className="flex flex-wrap">
+    <div className="flex flex-wrap justify-center p-6 lg:p-16">
+      <div className="w-full p-3 text-brand_gray lg:w-2/12">
+        <div className="category-filter">
+          <FormControl>
+            <FormLabel id="demo-radio-buttons-group-label">
+              <p className="font-bold">Categories</p>
+            </FormLabel>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue={category}
+              value={ category}
+              name="radio-buttons-group"
+              onChange={handleCategory}
+            >
+              <FormControlLabel value="" control={<Radio />} label="None" />
+              <FormControlLabel
+                value="main-course"
+                control={<Radio />}
+                label="Main Course"
+              />
+              <FormControlLabel
+                value="thali"
+                control={<Radio />}
+                label="Thali"
+              />
+              <FormControlLabel
+                value="combos"
+                control={<Radio />}
+                label="Combo"
+              />
+              <FormControlLabel
+                value="snacks"
+                control={<Radio />}
+                label="Snacks"
+              />
+              <FormControlLabel
+                value="cakes"
+                control={<Radio />}
+                label="cakes"
+              />
+              <FormControlLabel
+                value="sweets"
+                control={<Radio />}
+                label="Sweets"
+              />
+              <FormControlLabel
+                value="drinks"
+                control={<Radio />}
+                label="Drinks"
+              />
+            </RadioGroup>
+          </FormControl>
+        </div>
+        <div className="type-filter py-16">
+          <FormControl>
+            <FormLabel id="demo-radio-buttons-group-label">
+              <p className="font-bold">Type</p>
+            </FormLabel>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue={type}
+              value={type}
+              name="radio-buttons-group"
+              onChange={handleType}
+            >
+              <FormControlLabel value="" control={<Radio />} label="None" />
+              <FormControlLabel value="veg" control={<Radio />} label="Veg" />
+              <FormControlLabel
+                value="non-veg"
+                control={<Radio />}
+                label="Non Veg"
+              />
+            </RadioGroup>
+          </FormControl>
+        </div>
+      </div>
+      <div className="flex w-full flex-wrap lg:w-10/12">
         {dishes?.length > 0 &&
           dishes?.map((item: any) => (
             <div key={item._id} className=" w-full p-3 md:w-3/12">

@@ -107,7 +107,7 @@ const Index = () => {
           <div className="pb-4">
             <TextField
               type={'text'}
-              id="outlined-basic"
+              id="name"
               label="Name"
               variant="outlined"
               fullWidth={true}
@@ -118,7 +118,7 @@ const Index = () => {
           <div className="pb-4">
             <TextField
               type={'email'}
-              id="outlined-basic"
+              id="email"
               label="Email"
               variant="outlined"
               fullWidth={true}
@@ -130,7 +130,7 @@ const Index = () => {
             <TextField
               multiline
               type="text"
-              id="outlined-basic"
+              id="message"
               label="Message"
               variant="outlined"
               fullWidth={true}
@@ -142,6 +142,7 @@ const Index = () => {
           <div className="center flex-col">
             <div className="pb-1">
               <button
+                id="submit"
                 onClick={(e) => handleSubmit(e)}
                 className="bg-brand_red px-16 py-2 text-white"
               >

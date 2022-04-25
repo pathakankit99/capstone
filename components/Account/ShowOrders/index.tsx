@@ -54,11 +54,12 @@ function index() {
                         new Date(item.updated_at).getFullYear()}
                     </span>
                   </div>
-                          <p className="pt-3 text-center text-xs text-brand_red font-bold">Rs {item.amount}</p>
+                          <p className="py-2 text-center text-xs text-brand_red font-bold">Rs {item.amount}</p>
                           {
                               item?.cart?.map((e:any) => (
-                                  <div key={e._id} className="items">
-                                      <p className='text-brand_gray'>{ item?.quantity}</p>
+                                  <div key={e._id} className="items flex justify-between items-center">
+                                  <p className='text-brand_gray text-xs py-1'>{e?.name}</p>
+                                  <p className='text-brand_gray text-xs py-1'>{ e.quantity}</p>
                                   </div>
                               ))
                           }

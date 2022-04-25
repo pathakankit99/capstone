@@ -1,8 +1,9 @@
+import Link from "next/link"
 const index = () => {
     return (
-      <div className="lg:absolute z-50 w-full lg:p-6 lg:-mt-36">
+      <div className="z-50 w-full lg:absolute lg:-mt-36 lg:p-6">
         <div className="center h-screen flex-wrap lg:h-64">
-          <div className="hover-scale relative h-1/3 lg:h-full w-full overflow-hidden bg-blue-500 lg:w-6/12">
+          <div className="hover-scale relative h-1/3 w-full overflow-hidden bg-blue-500 lg:h-full lg:w-6/12">
             <img
               className="relative h-full w-full"
               style={{ objectFit: 'cover' }}
@@ -15,11 +16,11 @@ const index = () => {
                 <br /> get a 1.5L Pepsi Free{' '}
               </p>
               <button className="border border-brand_gray font-bold">
-                Order now
+                <Link href="/explore?category=drinks">Order now</Link>
               </button>
             </div>
           </div>
-          <div className="hover-scale relative h-1/3 lg:h-full w-full overflow-hidden bg-brand_red lg:w-4/12">
+          <div className="hover-scale relative h-1/3 w-full overflow-hidden bg-brand_red lg:h-full lg:w-4/12">
             <img
               className="relative h-full w-full"
               style={{ objectFit: 'cover' }}
@@ -32,11 +33,11 @@ const index = () => {
                 <br /> get a 1.5L Pepsi Free{' '}
               </p>
               <button className="border border-brand_gray font-bold">
-                Order now
+                <Link href="/explore?category=snacks">Order now</Link>
               </button>
             </div>
           </div>
-          <div className="hover-scale relative h-1/3 lg:h-full w-full overflow-hidden bg-white text-brand_gray lg:w-2/12">
+          <div className="hover-scale relative h-1/3 w-full overflow-hidden bg-white text-brand_gray lg:h-full lg:w-2/12">
             <img
               className="relative h-full w-full"
               style={{ objectFit: 'cover' }}
@@ -46,7 +47,7 @@ const index = () => {
               <h5 className="pb-4 text-3xl font-bold">Explore Food</h5>
               <p className="pb-4 text-sm">Order Your Favourite Food Today</p>
               <button className="border border-brand_gray font-bold">
-                View more
+                <Link href="/explore">Explore</Link>
               </button>
             </div>
           </div>

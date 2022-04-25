@@ -246,7 +246,7 @@ const Index = () => {
           aria-describedby="modal-modal-description"
         >
           <div className="center h-screen w-full bg-black bg-opacity-50 focus:outline-none">
-            <div className="relative w-6/12 bg-white p-6">
+            <div className="relative w-11/12 lg:w-6/12 bg-white p-6">
               <div
                 className="absolute top-5 right-5 cursor-pointer"
                 onClick={handleClose}
@@ -259,7 +259,7 @@ const Index = () => {
                   <div className="w-full">
                     <div className="pb-4">
                       <TextField
-                        id="outlined-basic"
+                        id="identifier"
                         label="Username/Email"
                         variant="outlined"
                         fullWidth={true}
@@ -270,7 +270,7 @@ const Index = () => {
                     <div>
                       <TextField
                         type={'password'}
-                        id="outlined-basic"
+                        id="password"
                         label="Password"
                         variant="outlined"
                         fullWidth={true}
@@ -278,10 +278,10 @@ const Index = () => {
                         onChange={(e) => setPass(e.target.value)}
                       />
                     </div>
-                    <p className="py-2 text-center text-sm underline">
+                    {/* <p className="py-2 text-center text-sm underline">
                       Lost Your Password?
-                    </p>
-                    <div className="center flex-col">
+                    </p> */}
+                    <div className="center flex-col py-3">
                       <div className="pb-1">
                         <button
                           onClick={(e) => handleLogin(e)}
@@ -310,7 +310,7 @@ const Index = () => {
                     <div className="pb-4">
                       <TextField
                         type={'email'}
-                        id="outlined-basic"
+                        id="email"
                         label="Email"
                         variant="outlined"
                         fullWidth={true}
@@ -321,7 +321,7 @@ const Index = () => {
                     <div className="pb-4">
                       <TextField
                         type={'password'}
-                        id="outlined-basic"
+                        id="password"
                         label="Password"
                         variant="outlined"
                         fullWidth={true}
@@ -332,7 +332,7 @@ const Index = () => {
                     <div className="pb-4">
                       <TextField
                         type={'password'}
-                        id="outlined-basic"
+                        id="confirm"
                         label="Confirm Password"
                         variant="outlined"
                         fullWidth={true}
@@ -342,7 +342,7 @@ const Index = () => {
                     </div>
                     <div className="pb-4">
                       <TextField
-                        id="outlined-basic"
+                        id="username"
                         label="Username"
                         variant="outlined"
                         fullWidth={true}
@@ -353,7 +353,7 @@ const Index = () => {
                     <div className="pb-4">
                       <TextField
                         type="number"
-                        id="outlined-basic"
+                        id="phone"
                         label="Phone"
                         variant="outlined"
                         fullWidth={true}
@@ -361,10 +361,10 @@ const Index = () => {
                         onChange={(e) => setPhone(e.target.value)}
                       />
                     </div>
-                    <p className="py-2 text-center text-sm underline">
+                    {/* <p className="py-2 text-center text-sm underline">
                       Lost Your Password?
-                    </p>
-                    <div className="center flex-col">
+                    </p> */}
+                    <div className="center flex-col py-3">
                       <div className="pb-1">
                         <button
                           onClick={(e) => handleRegister(e)}

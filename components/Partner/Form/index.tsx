@@ -130,7 +130,7 @@ const Index = () => {
           <div className="pb-4">
             <TextField
               type={'email'}
-              id="outlined-basic"
+              id="email"
               label="Email"
               variant="outlined"
               fullWidth={true}
@@ -141,7 +141,7 @@ const Index = () => {
           <div className="pb-4">
             <TextField
               type={'password'}
-              id="outlined-basic"
+              id="password"
               label="Password"
               variant="outlined"
               fullWidth={true}
@@ -152,7 +152,7 @@ const Index = () => {
           <div className="pb-4">
             <TextField
               type={'password'}
-              id="outlined-basic"
+              id="confirm"
               label="Confirm Password"
               variant="outlined"
               fullWidth={true}
@@ -162,7 +162,7 @@ const Index = () => {
           </div>
           <div className="pb-4">
             <TextField
-              id="outlined-basic"
+              id="username"
               label="Username"
               variant="outlined"
               fullWidth={true}
@@ -173,7 +173,7 @@ const Index = () => {
           <div className="pb-4">
             <TextField
               type="number"
-              id="outlined-basic"
+              id="phone"
               label="Phone"
               variant="outlined"
               fullWidth={true}
@@ -181,12 +181,13 @@ const Index = () => {
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
-          <p className="py-2 text-center text-sm underline">
+          {/* <p className="py-2 text-center text-sm underline">
             Lost Your Password?
-          </p>
-          <div className="center flex-col">
+          </p> */}
+          <div className="center flex-col py-3">
             <div className="pb-1">
               <button
+                id="submit"
                 onClick={(e) => handleRegister(e)}
                 className="bg-brand_red px-16 py-2 text-white"
               >

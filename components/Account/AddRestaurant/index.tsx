@@ -161,7 +161,7 @@ const Index = () => {
           <div className="pb-4">
             <TextField
               type={'text'}
-              id="outlined-basic"
+              id="name"
               label="Restaurant Name"
               variant="outlined"
               fullWidth={true}
@@ -172,7 +172,7 @@ const Index = () => {
           <div className="pb-4">
             <TextField
               select
-              id="outlined-basic"
+              id="type"
               label="Type"
               variant="outlined"
               fullWidth={true}
@@ -187,7 +187,7 @@ const Index = () => {
             <TextField
               multiline
               type="text"
-              id="outlined-basic"
+              id="description"
               label="Description"
               variant="outlined"
               fullWidth={true}
@@ -200,7 +200,7 @@ const Index = () => {
             <TextField
               select
               type={'text'}
-              id="outlined-basic"
+              id="city"
               label="City"
               variant="outlined"
               fullWidth={true}
@@ -232,6 +232,7 @@ const Index = () => {
               />
               <label htmlFor="file">
                 <button
+                  id="upload"
                   className="rounded-none border border-brand_gray bg-slate-400 hover:bg-slate-400 hover:text-black"
                   onClick={() =>
                     uploadInputRef.current && uploadInputRef.current.click()
@@ -246,13 +247,14 @@ const Index = () => {
                 </p>
               </label>
             </div>
-            <div className="w-full md:w-4/12">
+            {/* <div className="w-full md:w-4/12">
               <img src="/images/account/placeholder.jpg" />
-            </div>
+            </div> */}
           </div>
           <div className="center flex-col">
             <div className="pb-1">
               <button
+                id="submit"
                 onClick={(e) => handleSubmit(e)}
                 className="bg-brand_red px-16 py-2 text-white"
               >

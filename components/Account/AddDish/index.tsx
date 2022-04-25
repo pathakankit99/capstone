@@ -9,6 +9,10 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert'
 import CircularProgress from '@mui/material/CircularProgress'
 import MenuItem from '@mui/material/MenuItem'
 import { Cloudinary } from '@cloudinary/url-gen'
+
+import FormControlLabel from '@mui/material/FormControlLabel'
+
+import Checkbox from '@mui/material/Checkbox'
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
   ref
@@ -49,6 +53,7 @@ const Index = () => {
   const [type, setType] = useState('')
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
+  const [homemmade, setHomemmade] = useState(false)
   const [description, setDescription] = useState('')
   const [selectedFile, setSelectedFile] = useState(null)
   const [restaurant, setRestaurant] = useState('')
@@ -109,7 +114,8 @@ const Index = () => {
             img: image_url,
             restaurant,
             price,
-            category
+            category,
+            homemmade
           }
           axios
             .post('/api/dish/create', body, config)
@@ -161,6 +167,9 @@ const Index = () => {
   // useEffect(() => {
   //   console.log(restaurant, 'restaurant')
   // }, [selectedFile, restaurant])
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setHomemmade(event.target.checked)
+  }
 
   return (
     <div className="flex items-start justify-center p-6">
@@ -170,7 +179,7 @@ const Index = () => {
             <div className="pb-4">
               <TextField
                 type={'text'}
-                id="outlined-basic"
+                id="name"
                 label="Dish Name"
                 variant="outlined"
                 fullWidth={true}
@@ -181,7 +190,7 @@ const Index = () => {
             <div className="pb-4">
               <TextField
                 select
-                id="outlined-basic"
+                id="type"
                 label="Type"
                 variant="outlined"
                 fullWidth={true}
@@ -195,7 +204,7 @@ const Index = () => {
             <div className="pb-4">
               <TextField
                 select
-                id="outlined-basic"
+                id="category"
                 label="Category"
                 variant="outlined"
                 fullWidth={true}
@@ -215,7 +224,7 @@ const Index = () => {
             <div className="pb-4">
               <TextField
                 select
-                id="outlined-basic"
+                id="restaurant"
                 label="Restaurant"
                 variant="outlined"
                 fullWidth={true}
@@ -234,7 +243,7 @@ const Index = () => {
               <TextField
                 multiline
                 type="text"
-                id="outlined-basic"
+                id="description"
                 label="Description"
                 variant="outlined"
                 fullWidth={true}
@@ -243,15 +252,30 @@ const Index = () => {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
+
             <div className="pb-4">
               <TextField
                 type={'number'}
-                id="outlined-basic"
+                id="price"
                 label="Price"
                 variant="outlined"
                 fullWidth={true}
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+            <div className="pb-4">
+              <FormControlLabel
+                color="primary"
+                control={
+                  <Checkbox
+                    id="homemade"
+                    checked={homemmade}
+                    onChange={handleChange}
+                    inputProps={{ 'aria-label': 'controlled' }}
+                  />
+                }
+                label="Homemmade"
               />
             </div>
             <div className="center flex-wrap pb-4">
@@ -290,6 +314,7 @@ const Index = () => {
             <div className="center flex-col">
               <div className="pb-1">
                 <button
+                  id="submit"
                   onClick={(e) => handleSubmit(e)}
                   className="bg-brand_red px-16 py-2 text-white"
                 >

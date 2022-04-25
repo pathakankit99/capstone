@@ -63,11 +63,16 @@ export default function convertParams(model, params){
     });
     // console.log(finalQuery, "6");
     if (params.keyword) {
-        const $or = [
-            { serviceUser: { $regex: `^${params.keyword}`, $options: "i" } },
-            { form_id: { $regex: `^${params.keyword}`, $options: "i" } },
-        ];
-        finalQuery.find["$or"] = $or;
+        if (f === 'category') {
+            params[f] = params[f]
+            console.log(params[f],'params')
+        //   var newLanguages = params[f].replace(/,/g, '')
+        //   var languages = newLanguages.split('|')
+          finalQuery.where['category'] = {
+            $in: languages,
+          }
+        }
+        
     }
     return finalQuery;
 }
