@@ -2,7 +2,7 @@ import dbConnect from '../../../helpers/dbConnect'
 import Order from '../../../models/Order'
 import nextConnect from 'next-connect'
 const Razorpay = require('razorpay')
-const idGenerator = require('mongo-incremental-id-generator')(process.env.MONGODB_URI)
+// const idGenerator = require('mongo-incremental-id-generator')(process.env.MONGODB_URI)
 const { validate } = require('../../../middlewares/policies')
 const instance = new Razorpay({
   key_id: process.env.RAZORPAY_API,
@@ -27,31 +27,32 @@ handler.post(async (req, res) => {
   // console.log(req.body, 'req body');
   // console.log(body, "BODY");
   body.user = req.user._id
-  // console.log("Launching IDGenerator");
-  await idGenerator.generateId('recieptId', parseInt('00001', 8), function (err, id) {
-    if (err) {
-      res.status(400).send({ message: 'Bad Request' })
-    } else {
-      // console.log("Creating payParams");
-      const payParams = {
-        currency: 'INR',
-        amount: body.amount * 100,
-        receipt: id,
-        payment_capture: '1',
-      }
-      // console.log("Creating Order ID");
-      instance.orders
-        .create(payParams)
-        .then((data) => {
-          console.log('order ID success')
-          res.status(200).json({ data, key: process.env.RAZORPAY_API })
-        })
-        .catch((error) => {
-          console.log(error, 'ERR')
-          res.send({ error, status: 'failed' })
-        })
-    }
-  })
+  console.log("Launching IDGenerator");
+  Order.countDocuments({}, (err, count) => {
+     if (err) {
+       res.status(400)
+       res.send({ message: 'Parameters are not valid' })
+     } else {
+       console.log('Creating payParams')
+       const payParams = {
+         currency: 'INR',
+         amount: body.amount * 100,
+         receipt: "Eatos"+(count+1),
+         payment_capture: '1',
+       }
+       // console.log("Creating Order ID");
+       instance.orders
+         .create(payParams)
+         .then((data) => {
+           console.log('order ID success')
+           res.status(200).json({ data, key: process.env.RAZORPAY_API })
+         })
+         .catch((error) => {
+           console.log(error, 'ERR')
+           res.send({ error, status: 'failed' })
+         })
+     }
+   })
 })
 
 export default handler
