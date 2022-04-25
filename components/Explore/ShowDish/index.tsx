@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { MdGpsFixed } from 'react-icons/md'
+
+import { HiLocationMarker } from 'react-icons/hi'
+import { IoMdRestaurant } from 'react-icons/io'
 import {useSelector, useDispatch} from 'react-redux'
 function index() {
   const dispatch = useDispatch();
@@ -58,7 +61,7 @@ function index() {
               <div className="scale h-96  overflow-hidden bg-gray-100 text-brand_gray hover:shadow-xl">
                 <div
                   className="h-full overflow-hidden"
-                  style={{ height: '60%' }}
+                  style={{ height: '40%' }}
                 >
                   <img
                     style={{
@@ -76,28 +79,38 @@ function index() {
                   <div
                     className={
                       item.type === 'veg'
-                        ? 'center py-3 text-green-700'
-                        : 'center py-3 text-red-500'
+                        ? 'center pb-1 pt-3 text-green-700'
+                        : 'center pb-1 pt-3 text-red-500'
                     }
                   >
                     <MdGpsFixed />
                     <span className="ml-2 text-xs">{item.type}</span>
                   </div>
+                  <div className="center py-1">
+                    <IoMdRestaurant />
+                    <span className="ml-1 text-xs">{item.restaurant.name}</span>
+                  </div>
+                  <div className="center py-1 pb-3">
+                    <HiLocationMarker />
+                    <span className="ml-1 text-xs">{item.restaurant.city}</span>
+                  </div>
                   {/* <p className="py-3 text-center text-xs">{item.description}</p> */}
                   <p className="border border-brand_gray p-1 text-center text-sm font-medium">
                     Rs {item.price}
                   </p>
-                  {
-                    isPresentInCart(item) ? (
+                  {isPresentInCart(item) ? (
                     <button
                       onClick={() => removeFromCart(item)}
                       className="my-2 w-full rounded-none bg-brand_red text-white hover:bg-red-700"
                     >
-                      Added To Cart
+                      Remove From Cart
                     </button>
                   ) : (
                     <button
-                      onClick={() => addToCart([...cart, item])}
+                      onClick={() => {
+                        item.quantity = 1
+                        addToCart([...cart, item])
+                      }}
                       className="my-2 w-full rounded-none bg-brand_red text-white hover:bg-red-700"
                     >
                       Add To Cart

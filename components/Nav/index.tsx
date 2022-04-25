@@ -206,6 +206,9 @@ const Index = () => {
               <li className="cursor-pointer pr-6 font-bold uppercase active:underline">
                 <Link href="/">Home</Link>
               </li>
+              <li className="cursor-pointer pr-6 font-bold uppercase active:underline">
+                <Link href="/explore">Explore</Link>
+              </li>
               <li className="cursor-pointer pr-6 font-bold uppercase  active:underline">
                 <Link href="/contact-us">Contact Us</Link>
               </li>
@@ -226,12 +229,14 @@ const Index = () => {
                 <FaUserAlt />
               </div>
             )}
-            <div className="relative rounded-full bg-brand_red p-2">
-              <BsBasketFill />
-              <div className="absolute -top-1 -right-1 rounded-full bg-yellow-600 px-1 text-xs">
-                {cart?.length||0}
+            <Link href="/cart">
+              <div className="relative cursor-pointer rounded-full bg-brand_red p-2">
+                <BsBasketFill />
+                <div className="absolute -top-1 -right-1 rounded-full bg-yellow-600 px-1 text-xs">
+                  {cart?.length || 0}
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </nav>
         <Modal

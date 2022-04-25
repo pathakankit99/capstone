@@ -2,7 +2,7 @@
 const _ = require('lodash')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
-
+import dbConnect from '../helpers/dbConnect'
 async function validate(req, res, next) {
   let token = ''
   if (req.headers && req.headers.authorization) {
@@ -13,12 +13,13 @@ async function validate(req, res, next) {
       if (/^Bearer$/i.test(scheme)) {
         token = credentials
         try {
+          await dbConnect();
           var decoded = jwt.verify(token, 'eatos')
           // console.log(decoded, "decoded token");
           if (decoded.type === 'user') {
             var user = await User.findOne({ _id: decoded.data._id })
             decoded.data = user
-            // console.log(user)
+            console.log(user)
             if (!user) {
               res.status(401)
               res.send({ message: 'User not found!' })
