@@ -22,7 +22,7 @@ handler.get(async (req, res) => {
     .where(filters.where)
     .populate('updatedBy')
     .populate('createdBy')
-    .populate('restaurant')
+    // .populate('restaurant')
     .sort(filters.sort)
     .skip(filters.start)
     .limit(filters.limit)
