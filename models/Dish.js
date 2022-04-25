@@ -14,6 +14,10 @@ const dishSchema = new Schema(
       enum: ['veg', 'non-veg'],
       required: true,
     },
+    homemade: {
+      type: Boolean,
+      default: false,
+    },
     category: {
       type: String,
       trim: true,

@@ -1,5 +1,5 @@
 import dbConnect from '../../../helpers/dbConnect'
-import Dish from '../../../models/Dish'
+import Order from '../../../models/Order'
 import convertParams from '../../../utils/convertParams'
 import nextConnect from 'next-connect'
 import { getUserIftoken, validate } from '../../../middlewares/policies'
@@ -13,39 +13,37 @@ handler.use(getUserIftoken)
 handler.get(async (req, res) => {
   await dbConnect()
   const { body, user } = req
-  const filters = await convertParams(Dish, req.query)
+  const filters = await convertParams(Order, req.query)
   if (req.user) {
     filters.where.createdBy = user._id
   }
   console.log(filters, 'filters')
-  Dish.find(filters.find)
+  Order.find(filters.find)
     .where(filters.where)
-    .populate('updatedBy')
-    .populate('createdBy')
-    .populate('restaurant')
+    .populate('user')
     .sort(filters.sort)
     .skip(filters.start)
     .limit(filters.limit)
-    .exec(function (err, dishes) {
+    .exec(function (err, orders) {
       if (err) {
-        console.log(err, 'dish get err')
+        console.log(err, 'order get err')
         return res.status(400).send(err)
       }
-      // console.log(dishes, 'res')
-      Dish.countDocuments(
+      // console.log(orderes, 'res')
+      Order.countDocuments(
         { ...filters.where, ...filters.find },
         (err, count) => {
           if (err) {
             res.status(400)
             res.send({ message: 'Parameters are not valid' })
           }
-          const dishList = {
-            dishes,
-            dishCount: dishes.length,
+          const orderList = {
+            orders,
+            orderCount: orders.length,
             total: count,
           }
 
-          res.status(200).send(dishList)
+          res.status(200).send(orderList)
         }
       )
     })

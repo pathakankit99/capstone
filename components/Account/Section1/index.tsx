@@ -9,6 +9,7 @@ import {FaHotel} from 'react-icons/fa'
 import AddRestaurant from "../AddRestaurant"
 import AddDish from '../AddDish'
 import Dashboard from "../Dashboard"
+import UserDashboard from "../UserDashboard"
 const Section1 = () => {
   const [key, setKey] = useState(0)
   const dispatch = useDispatch()
@@ -77,7 +78,8 @@ const Section1 = () => {
         </div>
       </div>
       <div className="w-full md:w-9/12">
-        {key === 0 && <Dashboard />}
+        {key === 0 && user?.role?.name === 'partner' && <Dashboard />}
+        {key === 0 && user?.role?.name === 'user' && <UserDashboard />}
         {key === 1 && <AddRestaurant />}
         {key === 2 && <AddDish />}
       </div>

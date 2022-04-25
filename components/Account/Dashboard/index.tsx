@@ -3,7 +3,7 @@ import ShowRestaurant from "../ShowRestaurant"
 import ShowDish from "../ShowDish"
 function index() {
   return (
-      <div>
+    <div>
       <ShowRestaurant />
       <ShowDish/>
     </div>
