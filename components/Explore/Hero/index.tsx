@@ -16,7 +16,7 @@ const Hero = () => {
             width: '100%',
             filter: 'brightness(50%)',
           }}
-          src="/images/partner/hero.jpg"
+          src="/images/explore/hero.jpg"
         />
         <div style={{ bottom: '-9%' }} className="center absolute z-50 w-full">
           <span className="flex items-center rounded-full bg-brand_red py-3 px-6 lg:px-16">
