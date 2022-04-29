@@ -1,13 +1,17 @@
 import type { NextPage } from 'next'
-import Home from "../components/Home"
+import Homepage from '../components/Hompage'
 import Head from "next/head"
+import Nav from '../components/Nav'
+
 const Index: NextPage = () => {
   return (
     <>
       <Head>
-        <title>EATOS - Maa Ki Rasoi</title>
+        <title>MovieMasalaMania</title>
       </Head>
-      <Home />
+      <Nav/>
+      <Homepage />
+      
     </>
   )
 }

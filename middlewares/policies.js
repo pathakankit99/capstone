@@ -60,7 +60,7 @@ async function validate(req, res, next) {
   }
 }
 
-const getUserIftoken = async (req, res) => {
+const getUserIftoken = async (req, res, next) => {
   let token = ''
   if (req.headers && req.headers.authorization) {
     const parts = req.headers.authorization.split(' ')
