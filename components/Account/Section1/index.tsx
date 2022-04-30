@@ -5,11 +5,12 @@ import { useRouter } from 'next/router'
 import { AiOutlineLogout } from 'react-icons/ai'
 import { BiDish } from 'react-icons/bi'
 import {RiDashboardLine} from 'react-icons/ri'
-import {FaHotel} from 'react-icons/fa'
+import { FaHotel, FaAddressCard } from 'react-icons/fa'
 import AddRestaurant from "../AddRestaurant"
 import AddDish from '../AddDish'
 import Dashboard from "../Dashboard"
 import UserDashboard from "../UserDashboard"
+import AddAddress from "../AddAddress"
 const Section1 = () => {
   const [key, setKey] = useState(0)
   const dispatch = useDispatch()
@@ -53,6 +54,13 @@ const Section1 = () => {
           >
             <RiDashboardLine /> Dashboard
           </button>
+
+          <button
+            className="mb-2 w-full rounded-none py-3 text-brand_gray hover:bg-blue-200 hover:text-brand_gray"
+            onClick={() => setKey(3)}
+          >
+            <FaAddressCard /> Add Address
+          </button>
           {user?.role?.name === 'partner' && (
             <>
               <button
@@ -82,6 +90,7 @@ const Section1 = () => {
         {key === 0 && user?.role?.name === 'user' && <UserDashboard />}
         {key === 1 && <AddRestaurant />}
         {key === 2 && <AddDish />}
+        {key === 3 && <AddAddress />}
       </div>
     </div>
   )

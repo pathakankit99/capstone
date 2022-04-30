@@ -4,6 +4,7 @@ require('../models/Role')
 require('../models/Order')
 require('../models/Dish')
 require('../models/Restaurant')
+require('../models/Address')
 const MONGODB_URI = process.env.MONGODB_URI
 const LOCAL_URI = process.env.LOCAL_URI
 if (!MONGODB_URI) {
