@@ -13,11 +13,12 @@ handler.use(getUserIftoken)
 handler.get(async (req, res) => {
   await dbConnect()
   const { body, user } = req
+  console.log(req.query,'query')
   const filters = await convertParams(Dish, req.query)
   if (req.user) {
     filters.where.createdBy = user._id
   }
-  console.log(filters, 'filters')
+  console.log(filters, 'final filters')
   Dish.find(filters.find)
     .where(filters.where)
     .populate('updatedBy')

@@ -14,12 +14,14 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import FormControl from '@mui/material/FormControl'
 import FormLabel from '@mui/material/FormLabel'
 
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
+
 function index() {
   const router = useRouter();
    const [name, setName] = useState(router?.query?.category||'')
   const [category, setCategory] = useState(router?.query?.category||'')
-  const [type, setType] = useState(router?.query?.type||'')
+  const [type, setType] = useState(router?.query?.type || '')
+  const [homemade, setHomemade] = useState(router?.query?.homemade || '')
 
   const handleCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCategory((event.target as HTMLInputElement).value)
@@ -27,6 +29,9 @@ function index() {
   const handleType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setType((event.target as HTMLInputElement).value)
   }
+   const handleHomemade = (event: React.ChangeEvent<HTMLInputElement>) => {
+     setHomemade((event.target as HTMLInputElement).value)
+   }
   const dispatch = useDispatch();
   const [dishes, setdishes] = useState([])
   const { user, loading, cart } = useSelector((state: any) => ({
@@ -36,7 +41,7 @@ function index() {
   }))
   // console.log(cart, 'cart')
   useEffect(() => {
-    const query = `?category=${category}&type=${type}&name=${name}`
+    const query = `?category=${category}&type=${type}&name=${name}&homemade=${homemade}`
     axios
       .get('/api/dish'+query)
       .then((res) => setdishes(res?.data?.dishes))
@@ -55,15 +60,16 @@ function index() {
   }
 
   useEffect(() => {
-    const query = `?category=${category}&type=${type}&name=${name}`
+    const query = `?category=${category}&type=${type}&name=${name}&homemade=${homemade}`
     if(router) router?.push('/explore'+query)
     // querySearch()
-  }, [type, category, name])
+  }, [type, category, name, homemade])
 
   useEffect(() => {
     if (router?.query?.category) setCategory(router?.query?.category)
     if (router?.query?.type) setType(router?.query?.type)
     if (router?.query?.name) setName(router?.query?.name)
+    if (router?.query?.homemade) setHomemade(router?.query?.homemade)
   }, [router])
   
   
@@ -111,7 +117,7 @@ function index() {
             placeholder="Search..."
           />
 
-          <div className="bg-brand_red h-full p-4">
+          <div className="h-full bg-brand_red p-4">
             <BsSearch />
           </div>
         </div>
@@ -187,6 +193,28 @@ function index() {
                   value="non-veg"
                   control={<Radio />}
                   label="Non Veg"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
+          <div className="homemade-filter py-16">
+            <FormControl>
+              <FormLabel id="demo-radio-buttons-group-label">
+                <p className="font-bold">Homemade</p>
+              </FormLabel>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue={homemade}
+                value={homemade}
+                name="radio-buttons-group"
+                onChange={handleHomemade}
+              >
+                <FormControlLabel value="" control={<Radio />} label="None" />
+                <FormControlLabel value="true" control={<Radio />} label="True" />
+                <FormControlLabel
+                  value="false"
+                  control={<Radio />}
+                  label="False"
                 />
               </RadioGroup>
             </FormControl>

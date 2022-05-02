@@ -7,7 +7,7 @@ const Index = () => {
   const [dishes, setdishes] = useState([])
   useEffect(() => {
     axios
-      .get('/api/dish')
+      .get('/api/dish?_limit=10')
 
       .then((res) => setdishes(res?.data?.dishes))
       .catch((err) => console.log(err, 'dishes get error'))
@@ -82,7 +82,7 @@ const Index = () => {
                     <MdGpsFixed />
                     <span className="ml-2 text-xs">{item.type}</span>
                   </div>
-                  {/* <p className="py-3 text-center text-xs">{item.description}</p> */}
+                  <p className="py-3 text-center text-xs">{item.restaurant || "hello"}</p>
                   <p className="border border-brand_gray p-1 text-center text-sm font-medium">
                     Rs {item.price}
                   </p>
@@ -124,7 +124,7 @@ const Index = () => {
                     <MdGpsFixed />
                     <span className="ml-2 text-xs">{item.type}</span>
                   </div>
-                  {/* <p className="py-3 text-center text-xs">{item.description}</p> */}
+                  <p className="py-1 text-center text-xs">{item.restaurant.name}</p>
                   <p className="border border-brand_gray p-1 text-center text-sm font-medium">
                     Rs {item.price}
                   </p>

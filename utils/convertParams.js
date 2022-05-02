@@ -72,6 +72,13 @@ export default function convertParams(model, params){
             $in: languages,
           }
         }
+        if (f === 'homemade') {
+          params[f] = params[f]
+          console.log(params[f], 'homemade')
+          //   var newLanguages = params[f].replace(/,/g, '')
+          //   var languages = newLanguages.split('|')
+          finalQuery.where['homemade'] = params[f]
+        }
         
     }
     return finalQuery;

@@ -41,15 +41,15 @@ const index = () => {
                     Hot
                   </span>
                   <h6 className="pt-1 pb-3 text-xl font-bold uppercase">
-                    Makke Di Roti Combo
+                    {item.name}
                   </h6>
                   <p className="text-sm text-gray-500">
-                    A flatbread staple of india made using corn and a sabzi{' '}
+                   {item.description}
                   </p>
                 </div>
               </div>
               <div className="w-4/12 pr-6 text-right">
-                <p className="font-bold text-brand_red">Rs 100</p>
+                <p className="font-bold text-brand_red">Rs {item.price}</p>
               </div>
             </div>
           ))}
