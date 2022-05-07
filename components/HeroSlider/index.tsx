@@ -1,5 +1,5 @@
 import Slider from 'react-slick'
-import { rootCertificates } from 'tls'
+import Link from 'next/link'
 const Index = () => {
   const settings = {
     autoplay:true,
@@ -84,7 +84,9 @@ const Index = () => {
                   Nothing More Perfect
                 </p>
                 <div className="center pt-6">
-                  <button>Order Now</button>
+                  <Link href="/explore">
+                    <button>Order Now</button>
+                  </Link>
                 </div>
               </div>
             </div>
