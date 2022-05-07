@@ -18,7 +18,7 @@ import { useRouter } from 'next/router'
 
 function index() {
   const router = useRouter();
-   const [name, setName] = useState(router?.query?.category||'')
+   const [name, setName] = useState(router?.query?.name||'')
   const [category, setCategory] = useState(router?.query?.category||'')
   const [type, setType] = useState(router?.query?.type || '')
   const [homemade, setHomemade] = useState(router?.query?.homemade || '')
