@@ -47,7 +47,8 @@ function index() {
          loading: state.auth_reducer.loading,
          user: state.auth_reducer.user
      }))
-    const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [gst, setGST] = useState(0)
     const removeFromCart = (item: any) => {
     const indexOf = cart?.findIndex((e: any) => e._id == item._id)
     // console.log(indexOf,'index')
@@ -112,7 +113,7 @@ function index() {
       // creating a new order
       const body = {
         cart,
-        amount: total,
+        amount: Number(total)+Number(gst),
           status: 'Created',
     
       }
@@ -196,7 +197,15 @@ function index() {
           handleSnackbarOpen()
           // alert('Server error. Are you online?')
         })
+  }
+  
+  useEffect(() => {
+    if (total)
+    {//@ts-ignore
+      setGST(Number((18 / 100) * total).toFixed(2))
     }
+  }, [total])
+  
     
   return (
     <div className="p-6 pt-16 text-brand_gray lg:px-16">
@@ -286,13 +295,10 @@ function index() {
                 Total: <span>{total}</span>
               </div>
               <div className="flex justify-between border-b border-brand_gray py-1">
-                GST: <span>{((18 / total) * 100).toFixed(2)}</span>
+                GST: <span>{gst}</span>
               </div>
               <div className="flex justify-between py-1">
-                Grand Total:{' '}
-                <span>
-                  {Number(total) + Number(((18 / total) * 100).toFixed(2))}
-                </span>
+                Grand Total: <span>{Number(total) + Number(gst)}</span>
               </div>
               <button
                 onClick={() => {
@@ -301,7 +307,7 @@ function index() {
                 className={
                   user?.email
                     ? 'my-6 w-full rounded-none bg-brand_red py-3 text-white hover:bg-red-700'
-                    : 'my-6 w-full rounded-none bg-gray-600 py-3 text-white hover:bg-gray-600 cursor-not-allowed'
+                    : 'my-6 w-full cursor-not-allowed rounded-none bg-gray-600 py-3 text-white hover:bg-gray-600'
                 }
               >
                 {loading ? (
